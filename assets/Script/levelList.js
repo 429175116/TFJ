@@ -30,7 +30,8 @@ cc.Class({
 
     onLoad () {
         // 获取关卡数据
-        let levelList = [
+        let levelList = window.levelList
+        levelList = [
             {'name':'GameScene0', 'status': 1},
             {'name':'GameScene1', 'status': 1},
             {'name':'GameScene2', 'status': 1},
@@ -46,8 +47,10 @@ cc.Class({
         for (let i = 0; i < levelList.length; i++) {
             let node = null;
             if (levelList[i].status == 1) {
+                // 已通关场景
                 node = cc.instantiate(this.levelPass);
             } else {
+                // 未通关场景
                 node = cc.instantiate(this.levelNotPass);
             }
             let series = i % 3 + 1;
@@ -58,8 +61,13 @@ cc.Class({
             // 全局坐标转局部坐标
             node.position = this.node.convertToNodeSpaceAR(cc.v2(position[0], position[1]))
             node.levelName = levelList[i].name;
-            node.levelStatus= levelList[i].status;
+            node.levelStatus = levelList[i].status;
             this.node.addChild(node);
+            console.log(this.node)
+        }
+        // 控制生命,防止第二局生命为负数
+        if (window.life < 0) {
+            window.life = 0;
         }
     },
 

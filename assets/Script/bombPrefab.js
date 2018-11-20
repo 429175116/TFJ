@@ -21,6 +21,8 @@ cc.Class({
         this.playagain = cc.find("Canvas/playagain");
         this.playInfo = cc.find("Canvas/playInfo");
         this.scoreDisplay = cc.find("Canvas/score");
+        let time = window.time;
+        this.modulus = this.RandomNumBoth(time+300, time+850);
     },
 
     start () {
@@ -34,18 +36,11 @@ cc.Class({
             // this.node.stopAllActions()
             return
         }
-        var sy = 300*dt;
+        // let time = window.time;
+        // this.modulus = this.RandomNumBoth(time+300, time+850);
+        var sy = this.modulus*dt;
         // this.node.x += sx;
         this.node.y -= sy;
-
-        // if (this.flag == 0) {
-        //     if (this.game_scene.game_level >=5) {
-        //         this.flag = 1;
-        //         this.schedule(this.shoot_enemy_more_bullet.bind(this), 1);
-        //     }
-        // }
-        // console.log(this.node.x, this.node.y);
-        // console.log(this.node.y)
         if (this.node.y < -1000) {
             // 销毁节点destroy
             // this.node.removeFromParent();
@@ -55,6 +50,13 @@ cc.Class({
             // let experience = window.score - this.usedScore;
             // this.upGrade(experience)
         }
+    },
+    RandomNumBoth(Min, Max) {
+        // 生产随机数
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.round(Rand * Range); //四舍五入
+        return num;
     },
     // // 技能点获取函数封装
     // upGrade(experience) {

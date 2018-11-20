@@ -22,11 +22,11 @@ cc.Class({
             type: cc.Node,
             displayName: '背景节点2',
         },
-        joystick: {
-            default: null,
-            type: cc.Node,
-            displayName: '摇杆节点',
-        },
+        // joystick: {
+        //     default: null,
+        //     type: cc.Node,
+        //     displayName: '摇杆节点',
+        // },
         Prefab: {
             default: null,
             type: cc.Prefab,
@@ -36,6 +36,11 @@ cc.Class({
             default: null,
             type: cc.Node,
             displayName: '死亡',
+        },
+        mask: {
+            default: null,
+            type: cc.Node,
+            displayName: '蒙板',
         },
         diedAudio: {
             default: null,
@@ -60,11 +65,16 @@ cc.Class({
             type: cc.Node,
             displayName: '升级血量',
         },
-        upAttack: {
+        lifeShow: {
             default: null,
-            type: cc.Node,
-            displayName: '升级攻击',
+            type: cc.Label,
+            displayName: '血量',
         },
+        // upAttack: {
+        //     default: null,
+        //     type: cc.Node,
+        //     displayName: '升级攻击',
+        // },
         score:0, // 分数
         life: 10, // 生命值
         getLift: 10, // 升级增加的血量
@@ -79,16 +89,19 @@ cc.Class({
     // touchmove 滑动
     // touchend 离开
     onLoad () {
+        
         // 拿到碰撞管理器
         let manager = cc.director.getCollisionManager();
         // 发生碰撞请告诉我
         manager.enabled = true;
         // 显示轮廓
-        manager.enabledDebugDraw = true
+        manager.enabledDebugDraw = true;
+        // 获取动画
+        this.animationComponent = this.getComponent(cc.Animation);
         // 点击事件
-        this.node.on('touchmove', (e) => {
-            this.node.position = this.node.parent.convertToNodeSpaceAR(e.getLocation())
-        })
+        // this.node.on('touchmove', (e) => {
+        //     this.node.position = this.node.parent.convertToNodeSpaceAR(e.getLocation())
+        // })
         // this.ShowScore = setInterval(() => {
         //     this.getScore()
         // }, 1000);
@@ -99,45 +112,75 @@ cc.Class({
                 return
             }
             this.life += this.getLift;
-            window.life = this.life
+            window.life = this.life;
+            this.lifeShow.string = window.life;
             window.points -= 1;
             if (window.points <= 0) {
                 window.upAttrActive = false;
             }
             // 发送请求
         });
-        this.upAttack.on('touchstart', (e) => {
-            // 升级攻击
-            if (window.points <= 0) {
-                return
-            }
-            this.attack += this.getAttack;
-            window.attack = this.attack;
-            window.points -= 1;
-            if (window.points <= 0) {
-                window.upAttrActive = false;
-            }
-            // 发送请求
-        });
+        // this.upAttack.on('touchstart', (e) => {
+        //     // 升级攻击
+        //     if (window.points <= 0) {
+        //         return
+        //     }
+        //     this.attack += this.getAttack;
+        //     window.attack = this.attack;
+        //     window.points -= 1;
+        //     if (window.points <= 0) {
+        //         window.upAttrActive = false;
+        //     }
+        //     // 发送请求
+        // });
     },
 
     // 死亡控制
     died() {
-        // 控制摇杆隐藏
-        this.joystick.active = false;
-        // 显示游戏失败
-        this.playagain.active = true;
-
-
-        // clearInterval(this.ShowScore);
-        this.updatraScore();
-        
+        // // 控制摇杆隐藏
+        // this.joystick.active = false;
+        this.animationComponent.play('play');
+        var that = this;
+        // setTimeout(function(){
+            // 显示游戏失败
+            that.playagain.active = true;
+            // 蒙板
+            that.mask.active = true;
+        // }, 1000);    
     },
+    // 提交用户信息
+    updateInfo(userInfo, code) {
+        // 隐藏授权/获取用户信息按钮
+        button.hide();
+        var self = this;
+        var request = cc.loader.getXMLHttpRequest();
+        var url = `http://hongbao?code=${code}&nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`;
+        console.log(url)
+        request.open("POST", url, true);
+        // header设置
+        request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+        request.onreadystatechange = () => {
+            if (request.readyState == 4 && (request.status >= 200 && request.status < 300)) {
+                var response = request.responseText;
+                console.log('POST');
+                console.log(response);
+                var responseJson = JSON.parse(response);
+                // 获取关卡数据信息
+                window.levelList = responseJson["data"];
+                window.userInfo = responseJson["data"];
+                // 隐藏授权/获取用户信息按钮
+                button.hide();
+                // 进入关卡选择场景
+                cc.director.loadScene("LevelList");
+            }
+        }
+        request.send();
+    },
+    // 排行榜信息存储
     updatraScore() {
         // 玩家等级thisGrade;
         // 吞噬等级DevouringGrade;
         // 吞噬等级time(游戏时间，用于计算分数);
-
         // 保存玩家等级,吞噬等级,时间(用于排行榜)
         wx.setUserCloudStorage({
             // KVDataList: [{ key: 'score', value: '10' }],
@@ -154,24 +197,6 @@ cc.Class({
                 console.log(res);
             }
         });
-        // var KVDataList = [{ key: 'score', value: 50 }]
-        // wx.setUserCloudStroage({
-        //     // KVDataList: [{ key: 'score', value: 50 }],
-        //     KVDataList,
-        //     // KVDataList: [{ key: 'thisGrade', value: window.thisGrade },{ key: 'DevouringGrade', value: window.DevouringGrade },{ key: 'time', value: window.time }],
-        //     success: res => {
-        //         console.log(res);
-        //         // 让子域更新当前用户的最高分，因为主域无法得到getUserCloadStorage;
-        //         let openDataContext = wx.getOpenDataContext();
-        //         openDataContext.postMessage({
-        //             type: 'updateMaxScore',
-        //         });
-        //     }
-        //     // ,
-        //     // fail: res => {
-        //     //     console.log(res);
-        //     // }
-        // });
         // wx.getFriendCloudStorage({
         //     // keyList: ['thisGrade', 'DevouringGrade', 'time'], // 你要获取的、托管在微信后台都key
         //     keyList: ['score'], // 你要获取的、托管在微信后台都key
@@ -199,8 +224,9 @@ cc.Class({
         if (self.node.DevouringGrade > other.node.grade) {
             // 删除节点
             other.node.destroy();
+            // 执行吞噬动画
+            this.animationComponent.play('devouring');
             // 计算吞噬经验(+=障碍物生命值)
-
             window.DevouringScore += other.node.obstacleLife;
             let experience = window.DevouringScore - this.usedDevouringScore;
             console.log(window.DevouringScore,other.node.obstacleLife,experience)
@@ -211,10 +237,13 @@ cc.Class({
             // 等级相同，则不做处理
             return
         }
+        // 执行掉血动画
+        this.animationComponent.play('play');
         // 等级低于障碍物，则掉血
         let attackPower = other.node.attackPower;
         // 生命值减攻击力
         this.life -= attackPower;
+        console.log(this.life)
         window.life = this.life;
         // 生命消耗完则死亡
         if (this.life <= 0) {
@@ -227,14 +256,14 @@ cc.Class({
     update() {
         
     },
-    // 碰撞中，未分开则持续调用
-    onCollisionStay(other, self) {
-        console.log('在作死的路上越走越远')
-    },
-    // 碰撞结束(分离)
-    onCollisionExit(other, self) {
-        console.log('你死透了')
-    },
+    // // 碰撞中，未分开则持续调用
+    // onCollisionStay(other, self) {
+    //     console.log('在作死的路上越走越远')
+    // },
+    // // 碰撞结束(分离)
+    // onCollisionExit(other, self) {
+    //     console.log('你死透了')
+    // },
     start () {
         // 存在关卡,信息需要传递
         // 初始化全局吞噬等级

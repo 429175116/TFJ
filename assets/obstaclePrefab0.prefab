@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bombPrefab",
+    "_name": "obstaclePrefab",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,34 +42,34 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 132,
-      "height": 179
+      "width": 98,
+      "height": 94
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.5535633651616665,
+      "y": 0.44607337269365477
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -227,
-      "y": 326,
+      "x": -362,
+      "y": -482,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.65,
-      "y": 0.65,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 1,
+    "_rotationY": 1,
     "_quat": {
       "__type__": "cc.Quat",
       "x": 0,
       "y": 0,
-      "z": 0,
-      "w": 1
+      "z": -0.008726535498373935,
+      "w": 0.9999619230641713
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -88,10 +88,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c323fdb4-0252-48b3-a4af-3b6913792bed"
+      "__uuid__": "f91a4593-1fb3-47b6-a075-b1c7261e9604"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -103,6 +103,21 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "attackPower": 2,
+    "grade": 2,
+    "obstacleLife": 3,
+    "upgradeNeed": 10,
+    "usedScore": 0,
     "_id": ""
   },
   {
@@ -122,99 +137,100 @@
     "points": [
       {
         "__type__": "cc.Vec2",
-        "x": 24,
-        "y": -78.9
+        "x": -50.7,
+        "y": -16.3
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -54,
+        "y": -27.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -30.3,
+        "y": -19.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -30.3,
+        "y": -40.8
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 24.2,
+        "y": -42.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 20.3,
+        "y": -19.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 43.8,
+        "y": -31.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 44,
+        "y": -15.1
       },
       {
         "__type__": "cc.Vec2",
         "x": 37.3,
-        "y": -66.9
+        "y": -1.6
       },
       {
         "__type__": "cc.Vec2",
-        "x": 58.2,
-        "y": -37.4
+        "x": 29.3,
+        "y": 0.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": 65,
-        "y": -4
+        "x": 27.4,
+        "y": 24.1
       },
       {
         "__type__": "cc.Vec2",
-        "x": 62.2,
-        "y": 26.6
+        "x": 7.6,
+        "y": 36.5
       },
       {
         "__type__": "cc.Vec2",
-        "x": 51.8,
+        "x": 4.6,
+        "y": 51.9
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -10.6,
         "y": 53.3
       },
       {
         "__type__": "cc.Vec2",
-        "x": 19,
-        "y": 82.7
+        "x": -18.9,
+        "y": 40
       },
       {
         "__type__": "cc.Vec2",
-        "x": -2,
-        "y": 91.1
+        "x": -29.1,
+        "y": 33.2
       },
       {
         "__type__": "cc.Vec2",
-        "x": -35.4,
-        "y": 74.1
+        "x": -37.3,
+        "y": 25.3
       },
       {
         "__type__": "cc.Vec2",
-        "x": -52.8,
-        "y": 53.3
+        "x": -41.3,
+        "y": 3.3
       },
       {
         "__type__": "cc.Vec2",
-        "x": -61.3,
-        "y": 29.5
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -63.8,
-        "y": -5
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -59.4,
-        "y": -36.3
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -50.5,
-        "y": -58.1
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -25.8,
-        "y": -80.7
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 3,
-        "y": -85
+        "x": -48.5,
+        "y": -4.9
       }
     ],
-    "_id": ""
-  },
-  {
-    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "attackPower": 3,
-    "grade": 3,
-    "upgradeNeed": 10,
-    "usedScore": 0,
     "_id": ""
   },
   {
@@ -223,9 +239,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fa207b99-b981-4338-8023-5a1d85c9f8c0"
+      "__uuid__": "e6807044-92b3-4d49-a371-a27d23380f06"
     },
-    "fileId": "abATIl4uFLfKoVq9icUbEU",
+    "fileId": "75NNoyNhRFb7ecodYSfcUX",
     "sync": false
   }
 ]

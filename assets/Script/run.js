@@ -1,13 +1,3 @@
-// Learn cc.Class:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-// var http = require('http');
 cc.Class({
     extends: cc.Component,
 
@@ -60,7 +50,7 @@ cc.Class({
             wx.login({
                 success: res2 => {
                     var code = res2.code;
-                    this.updateUserInfo(userInfo, code);
+                    this.updateUserInfo(userInfo, code, button);
                 }
             })
         })
@@ -74,30 +64,35 @@ cc.Class({
     //         }
     //     })
     // },
-    updateUserInfo(userInfo, code){
+    // 提交用户信息
+    updateUserInfo(userInfo, code, button) {
+        // 隐藏授权/获取用户信息按钮
+        button.hide();
         var self = this;
         var request = cc.loader.getXMLHttpRequest();
         var url = `http://hongbao?code=${code}&nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`;
         console.log(url)
         request.open("POST", url, true);
         // header设置
-        // request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-        request.setRequestHeader('mingzi0', '111');
-        request.setRequestHeader('mingzi1', '222');
-        request.setRequestHeader('mingzi2', '333');
+        request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
         request.onreadystatechange = () => {
             if (request.readyState == 4 && (request.status >= 200 && request.status < 300)) {
                 var response = request.responseText;
                 console.log('POST');
                 console.log(response);
                 var responseJson = JSON.parse(response);
-                self.httpGetRes.String = responseJson["data"];
-                // 返回关卡数据及openId
+                // 获取关卡数据信息
+                window.levelList = responseJson["data"];
+                window.userInfo = responseJson["data"];
+                // 隐藏授权/获取用户信息按钮
+                button.hide();
+                // 进入关卡选择场景
+                cc.director.loadScene("LevelList");
             }
         }
         request.send();
     },
-    // GET
+    // GET实例(不参与调用执行)
     sendHttpGet() {
         var self = this;
         var request = cc.loader.getXMLHttpRequest();
@@ -120,7 +115,7 @@ cc.Class({
         }
         request.send();
     },
-    // POST
+    // POST实例(不参与调用执行)
     sendHttpPost() {
         var self = this;
         var request = cc.loader.getXMLHttpRequest();

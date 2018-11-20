@@ -42,18 +42,18 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 177,
-      "height": 177
+      "width": 109.7,
+      "height": 159.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.4635011557797079,
+      "y": 0.5370827407974056
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
+      "x": -13.7,
+      "y": -26.1,
       "z": 0
     },
     "_scale": {
@@ -91,7 +91,7 @@
       "__uuid__": "93874e38-3950-4a44-95a6-6eefdd42380e"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -115,10 +115,13 @@
     "_enabled": true,
     "attackPower": 4,
     "grade": 2,
+    "obstacleLife": 3,
+    "upgradeNeed": 10,
+    "usedScore": 0,
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.PolygonCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -131,7 +134,48 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 88,
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": -35.4,
+        "y": -37.9
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -13.9,
+        "y": -88.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 26.3,
+        "y": -40.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 43,
+        "y": 5.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 44,
+        "y": 70.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 10.8,
+        "y": 71.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -16.7,
+        "y": 65
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -48.4,
+        "y": 42.7
+      }
+    ],
     "_id": ""
   },
   {
