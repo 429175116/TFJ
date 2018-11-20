@@ -1,0 +1,217 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_native": "",
+    "data": {
+      "__id__": 1
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "obstaclePrefab1",
+    "_objFlags": 0,
+    "_parent": null,
+    "_children": [],
+    "_active": true,
+    "_level": 1,
+    "_components": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      }
+    ],
+    "_prefab": {
+      "__id__": 5
+    },
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 96,
+      "height": 96
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.49640551698974633,
+      "y": 0.5011981610034177
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -378.92762533555447,
+      "y": -97.87431407183571,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 23,
+    "_rotationY": 23,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": -0.1993679344171972,
+      "w": 0.9799247046208296
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "e163f681-9db4-4f05-8697-df28aeb80cc0"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_state": 0,
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "attackPower": 3,
+    "grade": 3,
+    "obstacleLife": 3,
+    "upgradeNeed": 10,
+    "usedScore": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PolygonCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": -44.7,
+        "y": -1.9
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -40.5,
+        "y": -8.3
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -30,
+        "y": -7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -22.7,
+        "y": 0.1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 7.3,
+        "y": 10.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 27.9,
+        "y": 24
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 42.1,
+        "y": 28.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 45.6,
+        "y": 34.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 45.4,
+        "y": 39.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 36.4,
+        "y": 45.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 13.7,
+        "y": 44.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -13.6,
+        "y": 39.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -40.9,
+        "y": 12.8
+      }
+    ],
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "17a80b57-01ed-4cc0-a839-4d0cbc0f944f"
+    },
+    "fileId": "74h0ncvmdK/6lzLqbCagDR",
+    "sync": false
+  }
+]
