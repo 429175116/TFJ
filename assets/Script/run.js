@@ -72,6 +72,7 @@ cc.Class({
         var request = cc.loader.getXMLHttpRequest();
         var url = `http://hongbao?code=${code}&nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`;
         console.log(url)
+        url = "http://localhost:3000"
         request.open("POST", url, true);
         // header设置
         request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");

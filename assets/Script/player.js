@@ -95,7 +95,7 @@ cc.Class({
         // 发生碰撞请告诉我
         manager.enabled = true;
         // 显示轮廓
-        manager.enabledDebugDraw = true;
+        // manager.enabledDebugDraw = true;
         // 获取动画
         this.animationComponent = this.getComponent(cc.Animation);
         // 点击事件

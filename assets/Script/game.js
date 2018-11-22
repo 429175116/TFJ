@@ -12,6 +12,11 @@ cc.Class({
             type: cc.Node,
             displayName: '死亡',
         },
+        again: {
+            default: null,
+            type: cc.Node,
+            displayName: '再来一次',
+        },
         // 炸弹资源
         bombPrefab: {
             default: null,
@@ -32,11 +37,11 @@ cc.Class({
         //     type: cc.Label,
         //     displayName: '分数',
         // },
-        gameOverScore: {
-            default: null,
-            type: cc.Label,
-            displayName: '死亡分数',
-        },
+        // gameOverScore: {
+        //     default: null,
+        //     type: cc.Label,
+        //     displayName: '死亡分数',
+        // },
         timeDataCon: {
             default: null,
             type: cc.Node,
@@ -67,11 +72,11 @@ cc.Class({
             type: cc.Node,
             displayName: '蒙板',
         },
-        goLeaderboard: {
-            default: null,
-            type: cc.Node,
-            displayName: '进入排行榜',
-        },
+        // goLeaderboard: {
+        //     default: null,
+        //     type: cc.Node,
+        //     displayName: '进入排行榜',
+        // },
         leftInfo: {
             default: null,
             type: cc.Label,
@@ -103,9 +108,11 @@ cc.Class({
         time: 0, // 玩家存活时间
         usedTime: 0, // 使用过的时间
         upgradeNeed: 10, // 升级所需经验
+        left: 10, // 初始生命
         thisGrade: 1, // 当前等级
         modulus: 5, // 升级经验系数
         points: 0, // 技能点
+        // randomX: [-200,-50,100,150], // 技能点
     },
 
 
@@ -116,16 +123,30 @@ cc.Class({
         // 启动时间定时器
         this.gettimes();
         // 获取障碍物偏移量
-        this.randomMinNum = -this.node.width/2;
-        this.randomMaxNum = this.node.width/2;
+        this.randomX = [-200,-80,100,220]
+        // this.randomMinNum = -this.node.width/2;
+        // this.randomMaxNum = this.node.width/2;
+        // // -269.86506746626685 269.86506746626685
+        // console.log(this.randomMinNum, this.randomMaxNum)
         // touchstart 点击
         // touchend 离开
-        this.player.on('touchmove', (e) => {
-            this.player.position = this.player.parent.convertToNodeSpaceAR(e.getLocation())
+        // this.player.on('touchmove', (e) => {
+        //     this.player.position = this.player.parent.convertToNodeSpaceAR(e.getLocation())
+        // })
+        this.node.on('touchmove', (e) => {
+            // console.log(e)
+            // if (e.touch._startPoint.x < e.touch._prevPoint.x) {
+            //     // console.log('+++++++++++++++')
+            //     this.player.x +=(this.player.parent.convertToNodeSpaceAR(e.touch._prevPoint).x - this.player.parent.convertToNodeSpaceAR(e.touch._startPoint).x)/5;
+            // } else {
+            //     // console.log('---------------')
+            //     this.player.x -= (this.player.parent.convertToNodeSpaceAR(e.touch._startPoint).x - this.player.parent.convertToNodeSpaceAR(e.touch._prevPoint).x)/5;
+            // }
+            this.player.x = this.node.convertToNodeSpaceAR(e.getLocation()).x
         })
         // 用于开始游戏
-        this.player.on('touchstart', (e) => {
-        // this.node.on('touchstart', (e) => {
+        // this.player.on('touchstart', (e) => {
+        this.node.on('touchstart', (e) => {
             // if (e.target.name != 'Canvas') {
             //     return;
             // }
@@ -133,8 +154,8 @@ cc.Class({
             this.gameStart(e);
         })
         // 用于暂停游戏
-        this.player.on('touchend', (e) => {
-        // this.node.on('touchend', (e) => {
+        // this.mode.on('touchend', (e) => {
+        this.node.on('touchend', (e) => {
             // if (e.target.name != 'Canvas') {
             //     return;
             // }
@@ -146,11 +167,16 @@ cc.Class({
             // 控制摇杆隐藏
             // this.joystick.active = false;
         })
-        // goLeaderboard
-        this.goLeaderboard.on('touchstart', (e) => {
-            // 场景切换--进入排行榜
-            cc.director.loadScene("Leaderboard");
+        
+        this.again.on('touchstart', (e) => {
+            // 再来一次
+            cc.director.loadScene("GameScene0");
         })
+        // // goLeaderboard
+        // this.goLeaderboard.on('touchstart', (e) => {
+        //     // 场景切换--进入排行榜
+        //     cc.director.loadScene("Leaderboard");
+        // })
     },
     // 开始游戏
     gameStart(e) {
@@ -191,20 +217,23 @@ cc.Class({
     },
     start() {
         // 初始游戏为暂停状态
-        window.gameStartStatus = false;
-        // 初始化等级
-        if (!window.thisGrade) {
-            window.thisGrade = this.thisGrade;
-        }
-        // 初始化经验系
-        if (!window.modulus) {
-            window.modulus = this.modulus;
-        }
-        // 初始化技能点
-        if (!window.points) {
-            window.points = this.points;
-        }
-        
+        // window.gameStartStatus = false;
+        // // 初始化等级
+        // if (!window.thisGrade) {
+        //     window.thisGrade = this.thisGrade;
+        // }
+        // // 初始化经验系
+        // if (!window.modulus) {
+        //     window.modulus = this.modulus;
+        // }
+        // // 初始化技能点
+        // if (!window.points) {
+        //     window.points = this.points;
+        // }
+        window.thisGrade = this.thisGrade;
+        window.modulus = this.modulus;
+        window.points = this.points;
+        window.life = this.left;
         // 隐藏升级按钮
         window.upAttrActive = false;
         // // 控制摇杆隐藏
@@ -225,7 +254,7 @@ cc.Class({
         // this.upAttr.active = window.upAttrActive;
         this.upAttr.active = false;
         window.time = 1;
-        window.stage = 1;
+        window.stage = 0;
         // 产生障碍物
         this._gen_random_group();
         this.playagain = cc.find("Canvas/playagain");
@@ -282,32 +311,39 @@ cc.Class({
             g_type = this.groups_prefab.length;
         }
         var g = cc.instantiate(this.groups_prefab[g_type - 1]);
-        g.x = this.RandomNumBoth(this.randomMinNum, this.randomMaxNum);
+        // g.x = this.RandomNumBoth(this.randomMinNum, this.randomMaxNum);
+        g.x = this.randomX[this.RandomNumBoth(0, 3)];
+        // this.randomMinNum = -this.node.width/2;
+        // this.randomMaxNum = this.node.width/2;
+        // // -269.86506746626685 269.86506746626685
+        // console.log(this.randomMinNum, this.randomMaxNum)
         g.y = (Math.random()) * 100 + 500;
         // 判断游戏是否开始
         if (window.gameStartStatus) {
             this.node.addChild(g);
         }
         // this.scheduleOnce(this._gen_random_group.bind(this), Math.random() * 1 + 2);
-        let setNodeTime = this.produceSpeed();
-        console.log(setNodeTime+'----------')
-        this.scheduleOnce(this._gen_random_group.bind(this), setNodeTime);
+        // let setNodeTime = this.produceSpeed();
+        this.scheduleOnce(this._gen_random_group.bind(this), this.produceSpeed());
+        // this.scheduleOnce(this._gen_random_group.bind(this), 0.8);
     },
     // 获取障碍物产生速度
     produceSpeed() {
         if (window.time == 0) {
             window.time = 1;
         }
-        if (window.time % 20 == 0) {
-            window.stage += 0.1;
+        if (window.time % 1 == 0) {
+            window.stage += 0.02;
         }
-        console.log(window.time+'++++');
-        // let setNodeTime = 2 - (window.stage / window.time);
-        let setNodeTime = 2 - window.stage;
-        if (setNodeTime <= 0.1) {
-            setNodeTime = 0.1;
-            return setNodeTime;
-        }
+        // let setNodeTime = 1 - window.stage;
+
+        let setNodeTime = 300 / (300 + window.time*6);
+        
+        console.log(setNodeTime)
+        // if (setNodeTime <= 0.3) {
+        //     setNodeTime = 0.3;
+        //     return setNodeTime;
+        // }
         return setNodeTime;
     },
     RandomNumBoth(Min, Max) {
@@ -319,7 +355,7 @@ cc.Class({
     },
     update (dt) {
         // this.scoreDisplay.string = window.score;
-        this.gameOverScore.string = window.score;
+        // this.gameOverScore.string = window.score;
     },
 
     // spawnNewStar() {

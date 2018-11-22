@@ -38,7 +38,8 @@ cc.Class({
         }
         // let time = window.time;
         // this.modulus = this.RandomNumBoth(time+300, time+850);
-        var sy = this.modulus*dt;
+        // var sy = this.modulus*dt;
+        var sy = (300 + window.time*6)*dt;
         // this.node.x += sx;
         this.node.y -= sy;
         if (this.node.y < -1000) {

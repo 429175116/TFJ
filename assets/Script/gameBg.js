@@ -3,7 +3,7 @@ cc.Class({
  
     properties: {
         far_bg: [cc.Node],  //用于管理背景图片结点的数组,记得回cocos面板中添加数组的结点数量
-        bg_speed: 5,   //移动时控制速度的变量
+        bg_speed: 1,   //移动时控制速度的变量
     },
  
     onLoad() {
@@ -11,8 +11,8 @@ cc.Class({
     //    this.fixBgPos(this.far_bg[0],this.far_bg[1]);
         // this.far_bg[0].index = -1
         // this.far_bg[1].index = -1
-        console.log(window.height);
-        console.log(this.far_bg[0],this.far_bg[1])
+        // console.log(window.height);
+        // console.log(this.far_bg[0],this.far_bg[1])
 
         // active设置为false  元素不可操作   可用于停止背景滚动
         // this.far_bg[0].active = false
