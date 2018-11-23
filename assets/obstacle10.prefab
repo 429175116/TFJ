@@ -186,7 +186,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "attackPower": 0,
+    "attackPower": 3,
     "grade": 3,
     "obstacleLife": 3,
     "upgradeNeed": 10,

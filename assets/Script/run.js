@@ -26,21 +26,22 @@ cc.Class({
 
     // update (dt) {},
     getUserInfoButton() {
+        var sysInfo = wx.getSystemInfoSync();
         var button = wx.createUserInfoButton({
-            type: 'text',
-            text: '获取用户信息',
-            // image: 'https://images0.cnblogs.com/blog2015/340216/201505/051947109386654.png',
+            type: 'image',
+            // text: '获取用户信息',
+            image: 'https://img2018.cnblogs.com/news/24442/201811/24442-20181116205423366-85420768.jpg',
             style: {
-                left: this.node.width / 2,
-                top: 600,
-                width: 200,
-                height: 40,
-                lineHeight: 40,
+                left: sysInfo.windowWidth / 4,
+                top: sysInfo.windowHeight / 4 * 3,
+                width: sysInfo.windowWidth / 4 * 2,
+                height: sysInfo.windowWidth / 4 * 2 / 3,
+                lineHeight: sysInfo.windowWidth / 4 * 2 / 3,
                 color: '#ffffff',
-                backgroundColor: '#ff0000',
+                // backgroundColor: '#ff0000',
                 textAlign: 'center',
                 fontSize: 16,
-                borderRadius: 4,
+                borderRadius: sysInfo.windowWidth / 4 * 2 / 3 / 2,
             }
         })
         button.show();
