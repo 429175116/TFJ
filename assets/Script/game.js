@@ -193,8 +193,6 @@ cc.Class({
     goLeftRun() {
         clearInterval(this.playRun);   
         this.playRun = window.setInterval((e) => {
-            // this.randomMinNum = -this.node.width/2;
-        // this.randomMaxNum = this.node.width/2;
             if (this.player.x <= -this.node.width/2) {
                 return;
             }
