@@ -7,21 +7,16 @@ cc.Class({
     },
  
     onLoad() {
-        
-    //    this.fixBgPos(this.far_bg[0],this.far_bg[1]);
-        // this.far_bg[0].index = -1
-        // this.far_bg[1].index = -1
-        // console.log(window.height);
-        // console.log(this.far_bg[0],this.far_bg[1])
-
         // active设置为false  元素不可操作   可用于停止背景滚动
         // this.far_bg[0].active = false
         // this.far_bg[1].active = false
         this.playagain = cc.find("Canvas/playagain");
         this.playInfo = cc.find("Canvas/playInfo");
+        this.Canvas = cc.find("Canvas");
     },
  
     update(dt) {
+        this.bg_speed = Math.round((300+window.time*5)*1/60);
         this.bgMove(this.far_bg, this.bg_speed);
     },
     bgMove: function (bgList, speed) {
@@ -31,14 +26,14 @@ cc.Class({
         }
         //每次循环二张图片一起滚动
         for (var index = 0; index < bgList.length; index++) {
-            bgList[index].y -=speed;
+            bgList[index].y -= speed;
         }
         //y坐标减去自身的height得到这张背景刚好完全离开场景时的y值
-        if (bgList[0].y <= 20 - bgList[0].height) {
-            bgList[0].y = 1000; //离开场景后将此背景图的y重新赋值，位于场景的上方
+        if (bgList[0].y <= 0 - bgList[0].height) {
+            bgList[0].y = this.Canvas.height; //离开场景后将此背景图的y重新赋值，位于场景的上方
         }
-        if (bgList[1].y <= 1020 - 2 * bgList[1].height) {
-            bgList[1].y = 1000;
+        if (bgList[1].y <= this.Canvas.height - 2 * bgList[1].height) {
+            bgList[1].y = this.Canvas.height;
         }
     },
     

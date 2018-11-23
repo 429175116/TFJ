@@ -39,7 +39,7 @@ cc.Class({
         // let time = window.time;
         // this.modulus = this.RandomNumBoth(time+300, time+850);
         // var sy = this.modulus*dt;
-        var sy = (300 + window.time*6)*dt;
+        var sy = (300 + window.time*3)*dt;
         // this.node.x += sx;
         this.node.y -= sy;
         if (this.node.y < -1000) {
@@ -63,7 +63,6 @@ cc.Class({
     // upGrade(experience) {
     //     // 升级经验为：当前等级乘以系数
     //     this.upgradeNeed = window.thisGrade * window.modulus;
-    //     console.log(experience,this.upgradeNeed,window.modulus)
     //     if (experience >= this.upgradeNeed) {
     //         // 获取时间差距
     //         this.usedScore = window.score;

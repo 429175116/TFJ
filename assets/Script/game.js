@@ -102,6 +102,16 @@ cc.Class({
             type: cc.Label,
             displayName: '吞噬等级',
         },
+        goleft: {
+            default: null,
+            type: cc.Node,
+            displayName: '向左',
+        },
+        goright: {
+            default: null,
+            type: cc.Node,
+            displayName: '向右',
+        },
         groundY: 0,
         randomMinNum: 0,
         randomMaxNum: 0,
@@ -123,27 +133,15 @@ cc.Class({
         // 启动时间定时器
         this.gettimes();
         // 获取障碍物偏移量
-        this.randomX = [-200,-80,100,220]
+        this.randomX = [-220,-90,20,90,220]
         // this.randomMinNum = -this.node.width/2;
         // this.randomMaxNum = this.node.width/2;
-        // // -269.86506746626685 269.86506746626685
-        // console.log(this.randomMinNum, this.randomMaxNum)
         // touchstart 点击
         // touchend 离开
         // this.player.on('touchmove', (e) => {
         //     this.player.position = this.player.parent.convertToNodeSpaceAR(e.getLocation())
         // })
-        this.node.on('touchmove', (e) => {
-            // console.log(e)
-            // if (e.touch._startPoint.x < e.touch._prevPoint.x) {
-            //     // console.log('+++++++++++++++')
-            //     this.player.x +=(this.player.parent.convertToNodeSpaceAR(e.touch._prevPoint).x - this.player.parent.convertToNodeSpaceAR(e.touch._startPoint).x)/5;
-            // } else {
-            //     // console.log('---------------')
-            //     this.player.x -= (this.player.parent.convertToNodeSpaceAR(e.touch._startPoint).x - this.player.parent.convertToNodeSpaceAR(e.touch._prevPoint).x)/5;
-            // }
-            this.player.x = this.node.convertToNodeSpaceAR(e.getLocation()).x
-        })
+        
         // 用于开始游戏
         // this.player.on('touchstart', (e) => {
         this.node.on('touchstart', (e) => {
@@ -160,7 +158,7 @@ cc.Class({
             //     return;
             // }
             // 暂停游戏
-            this.gamePause();
+            // this.gamePause();
         })
         this.playDescription.on('touchstart', (e) => {
             this.playDescription.active = false;
@@ -169,6 +167,8 @@ cc.Class({
         })
         
         this.again.on('touchstart', (e) => {
+            this.playagain.active = true;
+            window.gameStartStatus = false;
             // 再来一次
             cc.director.loadScene("GameScene0");
         })
@@ -177,6 +177,44 @@ cc.Class({
         //     // 场景切换--进入排行榜
         //     cc.director.loadScene("Leaderboard");
         // })
+        this.goleft.on('touchstart', (e) => {
+            this.goLeftRun();
+        })
+        this.goright.on('touchstart', (e) => {
+            this.goRightRun();
+        })
+        this.goleft.on('touchend', (e) => {
+            this.stopLeftRun();
+        })
+        this.goright.on('touchend', (e) => {
+            this.stopRightRun();
+        })
+    },
+    goLeftRun() {
+        clearInterval(this.playRun);   
+        this.playRun = window.setInterval((e) => {
+            // this.randomMinNum = -this.node.width/2;
+        // this.randomMaxNum = this.node.width/2;
+            if (this.player.x <= -this.node.width/2) {
+                return;
+            }
+            this.player.x -= 10;
+        }, 10);
+    },
+    stopLeftRun() {
+        clearInterval(this.playRun);   
+    },
+    goRightRun() {
+        clearInterval(this.playRun);   
+        this.playRun = window.setInterval((e) => {
+            if (this.player.x >= this.node.width/2) {
+                return;
+            }
+            this.player.x += 10;
+        }, 10);
+    },
+    stopRightRun() { 
+        clearInterval(this.playRun);  
     },
     // 开始游戏
     gameStart(e) {
@@ -250,6 +288,8 @@ cc.Class({
         // 蒙板
         this.mask.active = false;
         this.mask.zIndex = 9;
+        this.goleft.zIndex = 8;
+        this.goright.zIndex = 8;
         // 升级按钮隐藏
         // this.upAttr.active = window.upAttrActive;
         this.upAttr.active = false;
@@ -268,23 +308,24 @@ cc.Class({
             }
             if (window.gameStartStatus) {
                 this.time += 1;
+                window.time += 1;
             }
-            this.timeData.string = this.time;
-            window.time = this.time;
+            // window.time = this.time;
+            this.timeData.string = window.time;
+           
             // 加入时间和远古时代的关联算法
             // // 后期时间设置为-=  固定关卡时间，时间为0，进入下一关
             let gradeNeed = this.time - this.usedTime;
             
             this.upGrade(gradeNeed);
             // 修改升级属性按钮是否显示
-            this.upAttr.active = window.upAttrActive;
+            // this.upAttr.active = window.upAttrActive;
         }, 1000);
     },
     // 技能点获取函数封装
     upGrade(experience) {
         // 升级经验为：当前等级乘以系数
         window.upgradeNeed = window.thisGrade * this.modulus;
-        // console.log(experience, this.upgradeNeed);
         if (experience >= window.upgradeNeed) {
             // 获取时间差距
             this.usedTime = this.time
@@ -293,11 +334,11 @@ cc.Class({
             // 获取技能点
             window.points += 1;
         }
-        if (window.points > 0) {
-            window.upAttrActive = true;
-        } else {
-            window.upAttrActive = false;
-        }
+        // if (window.points > 0) {
+        //     window.upAttrActive = true;
+        // } else {
+        //     window.upAttrActive = false;
+        // }
     },
     // 随机&无限的产生一组敌人
     _gen_random_group() {
@@ -312,11 +353,10 @@ cc.Class({
         }
         var g = cc.instantiate(this.groups_prefab[g_type - 1]);
         // g.x = this.RandomNumBoth(this.randomMinNum, this.randomMaxNum);
-        g.x = this.randomX[this.RandomNumBoth(0, 3)];
+        g.x = this.randomX[this.RandomNumBoth(0, 4)];
         // this.randomMinNum = -this.node.width/2;
         // this.randomMaxNum = this.node.width/2;
         // // -269.86506746626685 269.86506746626685
-        // console.log(this.randomMinNum, this.randomMaxNum)
         g.y = (Math.random()) * 100 + 500;
         // 判断游戏是否开始
         if (window.gameStartStatus) {
@@ -337,9 +377,7 @@ cc.Class({
         }
         // let setNodeTime = 1 - window.stage;
 
-        let setNodeTime = 300 / (300 + window.time*6);
-        
-        console.log(setNodeTime)
+        let setNodeTime = 300 / (300 + window.time*3);
         // if (setNodeTime <= 0.3) {
         //     setNodeTime = 0.3;
         //     return setNodeTime;
@@ -358,30 +396,4 @@ cc.Class({
         // this.gameOverScore.string = window.score;
     },
 
-    // spawnNewStar() {
-    //     var scene = cc.director.getScene();
-    //     // 使用给定的模板在场景中生成一个新节点
-    //     var newStar = cc.instantiate(this.bombPrefab);
-    //     // 将新增的节点添加到 Canvas 节点下面
-    //     // this.node.addChild(newStar);
-    //     newStar.parent = scene;
-    //     // 为预制体设置一个随机位置
-
-    //     newStar.setPosition(300,300);
-    //     console.log(this.getNewStarPosition())
-    //     // newStar.setPosition(this.getNewStarPosition());
-    // },
-
-    // getNewStarPosition: function () {
-    //     var randX = 0;
-    //     // 根据地平面位置和主角跳跃高度，随机得到一个星预制体的 y 坐标
-    //     var randY = this.groundY;
-    //     // 根据屏幕宽度，随机得到一个预制体 x 坐标
-    //     var maxX = this.node.width/2;
-    //     randX = (Math.random() - 0.5) * 2 * maxX;
-    //     // 返回预制体坐标
-    //     return cc.v2(randX, randY);
-    // },
-
-    
 });

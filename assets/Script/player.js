@@ -70,6 +70,11 @@ cc.Class({
             type: cc.Label,
             displayName: '血量',
         },
+        timeData: {
+            default: null,
+            type: cc.Label,
+            displayName: '时间',
+        },
         // upAttack: {
         //     default: null,
         //     type: cc.Node,
@@ -227,11 +232,13 @@ cc.Class({
             // 执行吞噬动画
             this.animationComponent.play('devouring');
             // 计算吞噬经验(+=障碍物生命值)
-            window.DevouringScore += other.node.obstacleLife;
-            let experience = window.DevouringScore - this.usedDevouringScore;
-            console.log(window.DevouringScore,other.node.obstacleLife,experience)
-            // 提升吞噬等级
-            this.upDevouringGrade(experience)
+            window.time += Math.round(other.node.obstacleLife * window.time / 50);
+            this.timeData.string = window.time;
+            // window.DevouringScore += other.node.obstacleLife;
+            // let experience = window.DevouringScore - this.usedDevouringScore;
+            // console.log(window.DevouringScore,other.node.obstacleLife,experience)
+            // // 提升吞噬等级
+            // this.upDevouringGrade(experience)
             return
         } else if (self.node.DevouringGrade == other.node.grade) {
             // 等级相同，则不做处理
@@ -243,7 +250,6 @@ cc.Class({
         let attackPower = other.node.attackPower;
         // 生命值减攻击力
         this.life -= attackPower;
-        console.log(this.life)
         window.life = this.life;
         // 生命消耗完则死亡
         if (this.life <= 0) {
@@ -274,13 +280,11 @@ cc.Class({
         } else {
             this.node.DevouringGrade = window.DevouringGrade;
         }
-        // console.log(window.DevouringScore+'----')
         // 初始化吞噬经验
         if (!window.DevouringScore) {
             // 如果不存在全局吞噬经验,则赋给0
             window.DevouringScore = 0;
         }
-        // console.log(window.DevouringScore+'----')
         // 初始生命
         if (!window.life) {
             window.life = this.life;
@@ -294,14 +298,12 @@ cc.Class({
     upDevouringGrade(experience) {
         // 升级经验为：当前等级乘以系数
         this.upgradeNeed = window.DevouringGrade * this.modulus;
-        // console.log(experience, this.upgradeNeed);
         if (experience >= this.upgradeNeed) {
             // 获取经验差距
             this.usedDevouringScore = window.DevouringScore;
             // 吞噬等级+=1
             window.DevouringGrade += 1;
             this.node.DevouringGrade = window.DevouringGrade;
-            // console.log(this.node.DevouringGrade+'-----------')
         }
     },
 });

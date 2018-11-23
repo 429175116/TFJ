@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "obstaclePrefab3",
+    "_name": "obstacle10",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -43,7 +43,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 95,
-      "height": 96
+      "height": 95
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -52,8 +52,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -12.1,
-      "y": -72.5,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -88,7 +88,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "b938ddea-e458-4c33-80a5-1149e1e29bfd"
+      "__uuid__": "7b8617ad-5261-4249-b3fd-933fe7c4221d"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -103,21 +103,6 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "attackPower": 6,
-    "grade": 3,
-    "obstacleLife": 3,
-    "upgradeNeed": 10,
-    "usedScore": 0,
     "_id": ""
   },
   {
@@ -137,85 +122,75 @@
     "points": [
       {
         "__type__": "cc.Vec2",
-        "x": -22.8,
-        "y": 39.8
+        "x": -3.5,
+        "y": -50.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": -40.2,
-        "y": 29
+        "x": 32.8,
+        "y": -28.5
       },
       {
         "__type__": "cc.Vec2",
-        "x": -41.7,
-        "y": 11.4
+        "x": 31.6,
+        "y": -13.1
       },
       {
         "__type__": "cc.Vec2",
-        "x": -45.1,
-        "y": -4.6
+        "x": 29.7,
+        "y": 3.8
       },
       {
         "__type__": "cc.Vec2",
-        "x": -39.9,
-        "y": -29.2
+        "x": 48.1,
+        "y": 17.2
       },
       {
         "__type__": "cc.Vec2",
-        "x": -14.4,
-        "y": -47.7
+        "x": 47.3,
+        "y": 17.3
       },
       {
         "__type__": "cc.Vec2",
-        "x": 5.1,
-        "y": -47.9
+        "x": 12.9,
+        "y": 41.4
       },
       {
         "__type__": "cc.Vec2",
-        "x": 36.7,
-        "y": -40.9
+        "x": -10.6,
+        "y": 47.1
       },
       {
         "__type__": "cc.Vec2",
-        "x": 44.9,
-        "y": -24.9
+        "x": -40.9,
+        "y": 26
       },
       {
         "__type__": "cc.Vec2",
-        "x": 47.1,
-        "y": -11.4
+        "x": -27.5,
+        "y": 3.8
       },
       {
         "__type__": "cc.Vec2",
-        "x": 41.9,
-        "y": -0.9
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 40,
-        "y": 8.5
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 42.4,
-        "y": 21.2
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 37.9,
-        "y": 34.7
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 18.7,
-        "y": 46.3
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -1.5,
-        "y": 47.9
+        "x": -49.2,
+        "y": -25.8
       }
     ],
+    "_id": ""
+  },
+  {
+    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "attackPower": 0,
+    "grade": 3,
+    "obstacleLife": 3,
+    "upgradeNeed": 10,
+    "usedScore": 0,
     "_id": ""
   },
   {
@@ -224,9 +199,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "90cdada3-a8a2-44b6-9b66-4aba15130c3d"
+      "__uuid__": "a8da7044-90ac-4d3e-8412-ed6ce198d8e1"
     },
-    "fileId": "dapR/tXUFGjJx3+QqtQGKz",
+    "fileId": "8b3KxHcIpDlYL7sO7Z8iTb",
     "sync": false
   }
 ]

@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "obstaclePrefab3",
+    "_name": "obstacle9",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -43,7 +43,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 95,
-      "height": 96
+      "height": 95
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -52,8 +52,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -12.1,
-      "y": -72.5,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -88,7 +88,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "b938ddea-e458-4c33-80a5-1149e1e29bfd"
+      "__uuid__": "0324f9e6-2024-44e7-b94b-bb77542da3a7"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -113,7 +113,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "attackPower": 6,
+    "attackPower": 0,
     "grade": 3,
     "obstacleLife": 3,
     "upgradeNeed": 10,
@@ -137,83 +137,78 @@
     "points": [
       {
         "__type__": "cc.Vec2",
-        "x": -22.8,
-        "y": 39.8
+        "x": -7.6,
+        "y": -46.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": -40.2,
-        "y": 29
+        "x": 16.4,
+        "y": -16.4
       },
       {
         "__type__": "cc.Vec2",
-        "x": -41.7,
-        "y": 11.4
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -45.1,
-        "y": -4.6
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -39.9,
-        "y": -29.2
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -14.4,
-        "y": -47.7
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 5.1,
-        "y": -47.9
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 36.7,
-        "y": -40.9
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 44.9,
-        "y": -24.9
+        "x": 45.3,
+        "y": -25.3
       },
       {
         "__type__": "cc.Vec2",
         "x": 47.1,
-        "y": -11.4
+        "y": -16.6
       },
       {
         "__type__": "cc.Vec2",
-        "x": 41.9,
+        "x": 27.7,
         "y": -0.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": 40,
-        "y": 8.5
+        "x": 38.4,
+        "y": 25.2
       },
       {
         "__type__": "cc.Vec2",
-        "x": 42.4,
-        "y": 21.2
+        "x": 35.6,
+        "y": 32.8
       },
       {
         "__type__": "cc.Vec2",
-        "x": 37.9,
-        "y": 34.7
+        "x": 25.6,
+        "y": 40.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": 18.7,
-        "y": 46.3
+        "x": 11.7,
+        "y": 46.1
       },
       {
         "__type__": "cc.Vec2",
-        "x": -1.5,
-        "y": 47.9
+        "x": -44.7,
+        "y": 38.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -46.9,
+        "y": 14.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -23.8,
+        "y": 7.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -6.3,
+        "y": -30.3
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -26.4,
+        "y": -32
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -25.1,
+        "y": -43.5
       }
     ],
     "_id": ""
@@ -224,9 +219,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "90cdada3-a8a2-44b6-9b66-4aba15130c3d"
+      "__uuid__": "9b8b2073-2575-4aeb-a4ac-350f26ce4089"
     },
-    "fileId": "dapR/tXUFGjJx3+QqtQGKz",
+    "fileId": "f6PrgNGWhDw6yEnW/Hs1am",
     "sync": false
   }
 ]

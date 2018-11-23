@@ -114,8 +114,8 @@
     },
     "_enabled": true,
     "attackPower": 3,
-    "grade": 2,
-    "obstacleLife": 3,
+    "grade": 3,
+    "obstacleLife": 1,
     "upgradeNeed": 10,
     "usedScore": 0,
     "_id": ""
