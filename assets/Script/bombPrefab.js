@@ -39,8 +39,12 @@ cc.Class({
         // let time = window.time;
         // this.modulus = this.RandomNumBoth(time+300, time+850);
         // var sy = this.modulus*dt;
-        var sy = (300 + window.time*3)*dt;
+        // var sy = (300 + window.time*3)*dt;
         // this.node.x += sx;
+        
+        // this.node.speed 用于控制每列的速度不同
+        var sy = (this.node.speed + window.time*3)*dt;
+        // console.log(this.node.speed)
         this.node.y -= sy;
         if (this.node.y < -1000) {
             // 销毁节点destroy

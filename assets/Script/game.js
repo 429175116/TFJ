@@ -133,7 +133,14 @@ cc.Class({
         // 启动时间定时器
         this.gettimes();
         // 获取障碍物偏移量
-        this.randomX = [-220,-90,20,90,220]
+        // this.randomX = [-220,-90,20,90,220]
+        this.randomX = [
+            {"x": -220, "speed": 300},
+            {"x": -90, "speed": 200},
+            {"x": 20, "speed": 400},
+            {"x": 90, "speed": 300},
+            {"x": 220, "speed": 500}
+        ]
         // this.randomMinNum = -this.node.width/2;
         // this.randomMaxNum = this.node.width/2;
         // touchstart 点击
@@ -351,7 +358,10 @@ cc.Class({
         }
         var g = cc.instantiate(this.groups_prefab[g_type - 1]);
         // g.x = this.RandomNumBoth(this.randomMinNum, this.randomMaxNum);
-        g.x = this.randomX[this.RandomNumBoth(0, 4)];
+        let row = this.RandomNumBoth(0, 4);
+        g.x = this.randomX[row].x;
+        // speed控制每列速度不同
+        g.speed = this.randomX[row].speed;
         // this.randomMinNum = -this.node.width/2;
         // this.randomMaxNum = this.node.width/2;
         // // -269.86506746626685 269.86506746626685
