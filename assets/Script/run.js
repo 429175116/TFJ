@@ -51,6 +51,7 @@ cc.Class({
             wx.login({
                 success: res2 => {
                     var code = res2.code;
+                    window.userInfo = userInfo;
                     this.updateUserInfo(userInfo, code, button);
                 }
             })

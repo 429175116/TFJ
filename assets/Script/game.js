@@ -112,6 +112,11 @@ cc.Class({
             type: cc.Node,
             displayName: '向右',
         },
+        goRank: {
+            default: null,
+            type: cc.Node,
+            displayName: '进入排行榜',
+        },
         groundY: 0,
         randomMinNum: 0,
         randomMaxNum: 0,
@@ -148,7 +153,12 @@ cc.Class({
         // this.player.on('touchmove', (e) => {
         //     this.player.position = this.player.parent.convertToNodeSpaceAR(e.getLocation())
         // })
-        
+        // 进入排行榜
+        this.goRank.on('touchstart', (e) => {
+            // cc.sys.localStorage.setItem("windowTime",window.time);
+            // let time = cc.sys.localStorage.getItem("windowTime");
+            cc.director.loadScene("Rank");
+        })
         // 用于开始游戏
         // this.player.on('touchstart', (e) => {
         this.node.on('touchstart', (e) => {
