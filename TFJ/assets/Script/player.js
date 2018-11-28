@@ -147,14 +147,18 @@ cc.Class({
         this.animationComponent.play('play');
         var that = this;
         let time = cc.sys.localStorage.getItem("windowTime");
-        time = parseInt(time);
-        console.log(time)
-        
-        // 本次游戏分数大于之前的最高分，则替换之前的最高分
-        if (window.time > time) {
+        if (time != "") {
+            time = parseInt(time);
+            // 本次游戏分数大于之前的最高分，则替换之前的最高分
+            if (window.time > time) {
+                // 提交分数
+                this.updatraScore();
+            }
+        } else {
             // 提交分数
             this.updatraScore();
         }
+        
         // 显示游戏失败
         that.playagain.active = true;
         // 蒙板

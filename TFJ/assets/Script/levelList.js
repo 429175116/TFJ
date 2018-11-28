@@ -63,7 +63,6 @@ cc.Class({
             node.levelName = levelList[i].name;
             node.levelStatus = levelList[i].status;
             this.node.addChild(node);
-            console.log(this.node)
         }
         // 控制生命,防止第二局生命为负数
         if (window.life < 0) {

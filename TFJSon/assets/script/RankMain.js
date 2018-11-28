@@ -50,7 +50,7 @@ cc.Class({
         let node = this.createPrefab();
         let nickName = user.nickName ? user.nickName : user.nickname;
         let avatarUrl = user.avatarUrl;
-        let scoreData = user.KVDataList[0].value;
+        let scoreData = user.KVDataList[0].value + '分';
         let ranking = node.getChildByName('ranking').getComponent(cc.Label);
         let score = node.getChildByName('score').getComponent(cc.Label);
         let userName = node.getChildByName('userName').getComponent(cc.Label);

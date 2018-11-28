@@ -132,6 +132,25 @@ cc.Class({
 
 
     onLoad () {
+        //开启右上角的分享
+        // wx.showShareMenu();
+        wx.showShareMenu({
+            withShareTicket: true,
+        });
+        //监听右上角的分享调用 
+        wx.onShareAppMessage(function(res){
+            return {
+                title: "不怕，就来PK！",
+                imageUrl: 'http://ac.beaconway.cn/uploads/images/startBg.jpg',
+                success(res){
+                    console.log("转发成功!!!")
+                    // common.diamond += 20;
+                },
+                fail(res){
+                    console.log("转发失败!!!")
+                } 
+            }
+        })
         // 分数初始化
         window.score = 0;
         
@@ -269,6 +288,7 @@ cc.Class({
         this.mask.active = true;
     },
     start() {
+        wx.showShareMenu();
         // 初始游戏为暂停状态
         // window.gameStartStatus = false;
         // // 初始化等级
