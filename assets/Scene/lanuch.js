@@ -17,6 +17,7 @@ cc.Class({
         // 返回
         this.returnRun.on('touchend', (e) => {
             cc.director.loadScene("GameScene0");
-        })
+        });
+        // wx.postMessage({ message: window.time },{ windowTime: 20});
     },
 });

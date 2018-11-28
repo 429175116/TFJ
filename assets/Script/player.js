@@ -146,11 +146,7 @@ cc.Class({
         // this.joystick.active = false;
         this.animationComponent.play('play');
         var that = this;
-        console.log("window.time-------------"+ window.time);
-        cc.sys.localStorage.setItem("windowTime",window.time);
         let time = cc.sys.localStorage.getItem("windowTime");
-        
-        console.log("----------cc.sys.localStorage.getItem-----------"+time);
         time = parseInt(time);
         console.log(time)
         
@@ -164,38 +160,9 @@ cc.Class({
         // 蒙板
         that.mask.active = true; 
     },
-    // // 提交用户信息
-    // updateInfo(userInfo, code) {
-    //     // 隐藏授权/获取用户信息按钮
-    //     button.hide();
-    //     var self = this;
-    //     var request = cc.loader.getXMLHttpRequest();
-    //     var url = `http://hongbao?code=${code}&nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`;
-    //     console.log(url)
-    //     request.open("POST", url, true);
-    //     // header设置
-    //     request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-    //     request.onreadystatechange = () => {
-    //         if (request.readyState == 4 && (request.status >= 200 && request.status < 300)) {
-    //             var response = request.responseText;
-    //             console.log('POST');
-    //             console.log(response);
-    //             var responseJson = JSON.parse(response);
-    //             // 获取关卡数据信息
-    //             window.levelList = responseJson["data"];
-    //             window.userInfo = responseJson["data"];
-    //             // 隐藏授权/获取用户信息按钮
-    //             button.hide();
-    //             // 进入关卡选择场景
-    //             cc.director.loadScene("LevelList");
-    //         }
-    //     }
-    //     request.send();
-    // },
     // 排行榜信息存储
     updatraScore() {
         // wx.postMessage({ message: "friendRank" },{ windowTime: 20}); //通知子域运行场景friendRank
-        wx.postMessage({ message: window.time },{ windowTime: 20}); //通知子域运行场景friendRank
         // 玩家等级thisGrade;
         // 吞噬等级DevouringGrade;
         // 吞噬等级time(游戏时间，用于计算分数);
@@ -204,21 +171,8 @@ cc.Class({
         cc.sys.localStorage.setItem("windowTime",window.time);
         wx.setUserCloudStorage({
             KVDataList: [{ key: 'time', value: `${window.time}` }],
-            // KVDataList: [{ key: 'thisGrade', value: `${window.thisGrade}` },{ key: 'DevouringGrade', value: `${window.DevouringGrade}` },{ key: 'time', value: `${window.time}` }],
             success: res => {
-                console.log(res);
-                console.log('-------------------');
-                // cc.director.loadScene("Rank");
                 // 让子域更新当前用户的最高分，因为主域无法得到getUserCloadStorage;
-                // let openDataContext = wx.getOpenDataContext();
-                // console.log(openDataContext)
-                // // openDataContext.postMessage({
-                // //     type: 'updateMaxScore',
-                // //     // friendRank
-                // // });
-                // console.log("排行榜通知子域：friendRank");
-                // wx.postMessage({ message: "friendRank" }); //通知子域运行场景friendRank
-                // cc.director.loadScene("Rank");
             },
             fail: res => {
                 console.log(res);
