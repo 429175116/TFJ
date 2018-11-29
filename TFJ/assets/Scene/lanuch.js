@@ -19,7 +19,7 @@ cc.Class({
         wx.onShareAppMessage(function(res){
             return {
                 title: "不怕，就来PK！",
-                imageUrl: 'https://img2018.cnblogs.com/news/24442/201811/24442-20181116205423366-85420768.jpg',
+                imageUrl: 'http://ac.beaconway.cn/uploads/images/startBg.jpg',
                 success(res){
                     console.log("转发成功!!!")
                     // common.diamond += 20;

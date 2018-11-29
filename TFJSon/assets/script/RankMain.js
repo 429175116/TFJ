@@ -17,11 +17,14 @@ cc.Class({
                     wx.getFriendCloudStorage({
                         keyList: ['time'],
                         success: res => {
-                            var blockPrefab = this.content.getChildByName('block');
-                            if (blockPrefab) {
-                                // 删除原有列表
-                                blockPrefab.destroy();
+                            let dom = this.content.children;
+                            // 删除原有列表中的元素
+                            for (let i = 0;i < dom.length;i++) {
+                                dom[i].destroy();
                             }
+                            // 列表排序
+                            res.data = this.dataSort(res.data);
+                            // return
                             for (let i = 0; i < res.data.length; i++) {
                                 let friendInfo = res.data[i];
                                 if (!friendInfo) {
@@ -71,6 +74,20 @@ cc.Class({
         let node = cc.instantiate(this.prefab);
         node.parent = this.content;
         return node;
+    },
+    
+    // 排行榜数据排序
+    dataSort (data) {
+        for(var j=0;j<data.length-1;j++){
+        //两两比较，如果前一个比后一个大，则交换位置。
+            for(var i=0;i<data.length-1-j;i++){
+                if(data[i].KVDataList[0].value < data[i+1].KVDataList[0].value) {
+                    var temp = data[i];
+                    data[i] = data[i+1];
+                    data[i+1] = temp;
+                }
+            }
+        }
+        return data;
     }
-
 });
