@@ -23,10 +23,10 @@ cc.Class({
                                 dom[i].destroy();
                             }
                             // 列表排序
-                            res.data = this.dataSort(res.data);
+                            let listData = this.dataSort(res.data);
                             // return
-                            for (let i = 0; i < res.data.length; i++) {
-                                let friendInfo = res.data[i];
+                            for (let i = 0; i < listData.length; i++) {
+                                let friendInfo = listData[i];
                                 if (!friendInfo) {
                                     this.createPrefab();
                                     continue;
@@ -78,16 +78,24 @@ cc.Class({
     
     // 排行榜数据排序
     dataSort (data) {
-        for(var j=0;j<data.length-1;j++){
-        //两两比较，如果前一个比后一个大，则交换位置。
-            for(var i=0;i<data.length-1-j;i++){
-                if(data[i].KVDataList[0].value < data[i+1].KVDataList[0].value) {
-                    var temp = data[i];
-                    data[i] = data[i+1];
-                    data[i+1] = temp;
-                }
-            }
-        }
+        data.sort(this.sortId);
         return data;
-    }
+        // for(var j=0;j<data.length-1;j++){
+        // //两两比较，如果前一个比后一个大，则交换位置。
+        //     for(var i=0;i<data.length-j-1;i++){
+        //         console.log(data[i].KVDataList[0].value, data[i+1].KVDataList[0].value)
+        //         if(data[i].KVDataList[0].value < data[i+1].KVDataList[0].value) {
+        //             var temp = data[i];
+        //             data[i] = data[i+1];
+        //             data[i+1] = temp;
+        //         }
+        //     }
+
+        //     // console.log(data)
+        // }
+        // return data;
+    },
+    sortId(a,b){  
+        return b.KVDataList[0].value - a.KVDataList[0].value
+     }
 });

@@ -129,9 +129,17 @@ cc.Class({
         points: 0, // 技能点
         // randomX: [-200,-50,100,150], // 技能点
     },
-
-
     onLoad () {
+        var that = this;
+        wx.onShow(function callback(res){
+            if (window.gameStartStatus) {
+                // 启动时间定时器
+                that.gettimes();
+            }
+        })
+        wx.onHide(function callback(res){
+            clearInterval(that.times);
+        })
         //开启右上角的分享
         // wx.showShareMenu();
         wx.showShareMenu({
@@ -153,7 +161,6 @@ cc.Class({
         })
         // 分数初始化
         window.score = 0;
-        
         // 启动时间定时器
         this.gettimes();
         // 获取障碍物偏移量
@@ -176,6 +183,8 @@ cc.Class({
         this.goRank.on('touchstart', (e) => {
             // cc.sys.localStorage.setItem("windowTime",window.time);
             // let time = cc.sys.localStorage.getItem("windowTime");
+            
+            clearInterval(this.times);
             cc.director.loadScene("Rank");
         })
         // 用于开始游戏
@@ -184,6 +193,8 @@ cc.Class({
             // if (e.target.name != 'Canvas') {
             //     return;
             // }
+            // // 启动时间定时器
+            // this.gettimes();
             // 开始游戏
             this.gameStart(e);
         })
@@ -203,8 +214,6 @@ cc.Class({
         })
         
         this.again.on('touchstart', (e) => {
-            this.playagain.active = true;
-            window.gameStartStatus = false;
             // 再来一次
             cc.director.loadScene("GameScene0");
         })
@@ -226,6 +235,7 @@ cc.Class({
             this.stopRightRun();
         })
     },
+
     goLeftRun() {
         clearInterval(this.playRun);   
         this.playRun = window.setInterval((e) => {
@@ -303,6 +313,9 @@ cc.Class({
         // if (!window.points) {
         //     window.points = this.points;
         // }
+        this.playagain.active = true;
+        window.gameStartStatus = false;
+
         window.thisGrade = this.thisGrade;
         window.modulus = this.modulus;
         window.points = this.points;
@@ -346,8 +359,8 @@ cc.Class({
                 window.time += 1;
             }
             // window.time = this.time;
-            this.timeData.string = window.time;
-           
+            // this.timeData.string = window.time;
+            this.timeData.string = this.timegetYear(window.time);
             // 加入时间和远古时代的关联算法
             // // 后期时间设置为-=  固定关卡时间，时间为0，进入下一关
             let gradeNeed = this.time - this.usedTime;
@@ -356,6 +369,28 @@ cc.Class({
             // 修改升级属性按钮是否显示
             // this.upAttr.active = window.upAttrActive;
         }, 1000);
+    },
+    timegetYear(s) {
+        let time = (1 + 762380.17 * (s  - 1)) * (s / 2)/2.5;
+        let year = '';
+        if (time < 100) {
+            year = '年';
+        } else if (time >= 100 && time < 1000) {
+            year = '百年';
+            time = time / 100;
+        } else if (time >= 1000 && time < 10000) {
+            year = '千年';
+            time = time / 1000;
+        } else if (time >= 10000 && time < 100000000) {
+            year = '万年';
+            time = time / 10000;
+        } else if (time > 100000000) {
+            year = '亿年';
+            time = time / 100000000;
+        }
+        time = time.toFixed(2);
+        time += year;
+        return time
     },
     // 技能点获取函数封装
     upGrade(experience) {
