@@ -43,7 +43,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 95,
-      "height": 95
+      "height": 150
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -106,6 +106,21 @@
     "_id": ""
   },
   {
+    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "attackPower": 3,
+    "grade": 3,
+    "obstacleLife": 3,
+    "upgradeNeed": 10,
+    "usedScore": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PolygonCollider",
     "_name": "",
     "_objFlags": 0,
@@ -122,75 +137,65 @@
     "points": [
       {
         "__type__": "cc.Vec2",
-        "x": -3.5,
-        "y": -48.7
+        "x": -27.2,
+        "y": -53.4
       },
       {
         "__type__": "cc.Vec2",
-        "x": 21.3,
-        "y": -42.9
+        "x": -24.71,
+        "y": -61.86
       },
       {
         "__type__": "cc.Vec2",
-        "x": 38.8,
-        "y": -31.2
+        "x": 24.34,
+        "y": -61.79
       },
       {
         "__type__": "cc.Vec2",
-        "x": 46.2,
-        "y": -9.9
+        "x": 26.2,
+        "y": -53.2
       },
       {
         "__type__": "cc.Vec2",
-        "x": 45.9,
-        "y": 11.9
+        "x": 26.2,
+        "y": 49.7
       },
       {
         "__type__": "cc.Vec2",
-        "x": 42,
-        "y": 22.9
+        "x": 23.2,
+        "y": 58.6
       },
       {
         "__type__": "cc.Vec2",
-        "x": 28.5,
-        "y": 41.7
+        "x": 18.7,
+        "y": 64
       },
       {
         "__type__": "cc.Vec2",
-        "x": -10.6,
-        "y": 47.1
+        "x": 9.6,
+        "y": 66.7
       },
       {
         "__type__": "cc.Vec2",
-        "x": -40.3,
-        "y": 29.4
+        "x": -10,
+        "y": 66.9
       },
       {
         "__type__": "cc.Vec2",
-        "x": -48.1,
-        "y": -4.9
+        "x": -18.2,
+        "y": 64.3
       },
       {
         "__type__": "cc.Vec2",
-        "x": -33.9,
-        "y": -38
+        "x": -23.4,
+        "y": 59.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -26.7,
+        "y": 49.4
       }
     ],
-    "_id": ""
-  },
-  {
-    "__type__": "4ff553EiV5OoKRWq3xb8VyA",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "attackPower": 3,
-    "grade": 3,
-    "obstacleLife": 3,
-    "upgradeNeed": 10,
-    "usedScore": 0,
     "_id": ""
   },
   {
